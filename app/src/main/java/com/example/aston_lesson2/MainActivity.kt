@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.result.launch
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.example.aston_lesson2.databinding.ActivityMainBinding
@@ -22,6 +24,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
 
+            val text = getSharedString(SHARED_TEXT)
+            if (text != null && text != ""){
+                Log.d("TAG", text)
+                tvTitle.text = text
+            }
+
             btnEng.setOnClickListener {
                 changeLocale(LOCALE_EN)
             }
@@ -35,15 +43,14 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
     }
 
     private fun checkLocale(){
-        if (getString(FIRST_TIME_MIGRATION) != STATUS_DONE) {
-            getString(SELECTED_LANGUAGE)?.let { it ->
+        if (getSharedString(FIRST_TIME_MIGRATION) != STATUS_DONE) {
+            getSharedString(SELECTED_LANGUAGE)?.let { it ->
                 localeList = LocaleListCompat.forLanguageTags(it)
                 AppCompatDelegate.setApplicationLocales(localeList)
-                putString(FIRST_TIME_MIGRATION, STATUS_DONE)
+                putSharedString(FIRST_TIME_MIGRATION, STATUS_DONE)
             }
         }
     }
@@ -53,13 +60,13 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setApplicationLocales(localeList)
     }
 
-    private fun putString(key: String, value: String) {
+    private fun putSharedString(key: String, value: String) {
         val editor = getSharedPreferences(PREFERENCE_NAME, PREFERENCE_MODE).edit()
         editor.putString(key, value)
         editor.apply()
     }
 
-    private fun getString(key: String): String? {
+    private fun getSharedString(key: String): String? {
         val preference = getSharedPreferences(PREFERENCE_NAME, PREFERENCE_MODE)
         return preference.getString(key, null)
     }
@@ -68,9 +75,12 @@ class MainActivity : AppCompatActivity() {
         const val PREFERENCE_NAME = "shared_preference"
         const val PREFERENCE_MODE = Context.MODE_PRIVATE
         const val FIRST_TIME_MIGRATION = "first_time_migration"
+        const val SHARED_TEXT = "shared_text"
         const val SELECTED_LANGUAGE = "selected_language"
         const val STATUS_DONE = "status_done"
         const val LOCALE_RU = "ru"
         const val LOCALE_EN = "en"
+        const val INPUT_KEY = "input_key"
+        const val RESULT_KEY = "result_key"
     }
 }
