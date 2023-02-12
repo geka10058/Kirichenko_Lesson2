@@ -1,15 +1,10 @@
 package com.example.aston_lesson2
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
-import com.example.aston_lesson2.databinding.ActivityMainBinding
 import com.example.aston_lesson2.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
@@ -34,13 +29,31 @@ class SecondActivity : AppCompatActivity() {
             }
 
             btnReturn.setOnClickListener {
-                val editor = preference.edit()
-                editor.putString(MainActivity.SHARED_TEXT,text)
-                editor.apply()
-                val intent = Intent(this@SecondActivity,MainActivity::class.java)
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK+Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
+                putSharedString(preference)
+                startMainActivity()
             }
         }
+    }
+
+    private fun putSharedString(preference:SharedPreferences){
+        val editor = preference.edit()
+        editor.putString(MainActivity.SHARED_TEXT,text)
+        editor.apply()
+    }
+
+    private fun startMainActivity(){
+        val intent = Intent(this@SecondActivity,MainActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK+Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(MainActivity.SHARED_TEXT,text)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        text = savedInstanceState.getString(MainActivity.SHARED_TEXT).toString()
     }
 }

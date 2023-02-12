@@ -80,7 +80,5 @@ class MainActivity : AppCompatActivity() {
         const val STATUS_DONE = "status_done"
         const val LOCALE_RU = "ru"
         const val LOCALE_EN = "en"
-        const val INPUT_KEY = "input_key"
-        const val RESULT_KEY = "result_key"
     }
 }
