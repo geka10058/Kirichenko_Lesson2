@@ -5,4 +5,7 @@
     <string name="current_lang">Current language is English</string>
     <string name="btn_title_eng">English</string>
     <string name="btn_title_rus">Russian</string>
+    <string name="btn_next_activity">Next Activity</string>
+    <string name="write_any_text">Write any text</string>
+    <string name="btn_return">Return</string>
 </resources>

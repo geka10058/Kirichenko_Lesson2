@@ -4,8 +4,7 @@
     <string name="current_lang">Current language is English</string>
     <string name="btn_title_eng">English</string>
     <string name="btn_title_rus">Russian</string>
-    <string name="shared_preference" translatable="false">shared_preference</string>
-    <string name="first_time_migration" translatable="false">first_time_migration</string>
-    <string name="selected_language" translatable="false">selected_language</string>
-    <string name="status_done" translatable="false">status_done</string>
+    <string name="btn_next_activity">Next Activity</string>
+    <string name="write_any_text">Write any text</string>
+    <string name="btn_return">Return</string>
 </resources>

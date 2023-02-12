@@ -1,6 +1,7 @@
 package com.example.aston_lesson2
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
@@ -27,6 +28,11 @@ class MainActivity : AppCompatActivity() {
 
             btnRus.setOnClickListener {
                 changeLocale(LOCALE_RU)
+            }
+
+            btnNext.setOnClickListener {
+                val intent = Intent(this@MainActivity, SecondActivity::class.java)
+                startActivity(intent)
             }
         }
 
@@ -59,11 +65,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val PREFERENCE_NAME = R.string.shared_preference.toString()
+        const val PREFERENCE_NAME = "shared_preference"
         const val PREFERENCE_MODE = Context.MODE_PRIVATE
-        const val FIRST_TIME_MIGRATION = R.string.first_time_migration.toString()
-        const val SELECTED_LANGUAGE = R.string.selected_language.toString()
-        const val STATUS_DONE = R.string.status_done.toString()
+        const val FIRST_TIME_MIGRATION = "first_time_migration"
+        const val SELECTED_LANGUAGE = "selected_language"
+        const val STATUS_DONE = "status_done"
         const val LOCALE_RU = "ru"
         const val LOCALE_EN = "en"
     }
