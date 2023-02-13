@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Астон_Занятие2</string>
+    <string name="hello_world">Привет Мир!)</string>
+    <string name="current_lang">Выбранный язык - Русский</string>
+    <string name="btn_title_eng">Английский</string>
+    <string name="btn_title_rus">Русский</string>
+    <string name="btn_next_activity">На 2-й экран</string>
+    <string name="write_any_text">Введите любой текст</string>
+    <string name="btn_return">Вернуться</string>
+</resources>
